@@ -1,9 +1,11 @@
 class PostsController < ApplicationController
 
   def index
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def show
+    @posts = Post.find_by(params[:id])
   end
   
   def new
@@ -11,10 +13,10 @@ class PostsController < ApplicationController
   end 
 
   def create
-    @post = Post.new(params.require(:post).permit(:title, :body,))
+    @post = Post.new(params.require(:post).permit(:title, :body))
     
     if @post.save
-      #
+      redirect_to posts_path
     else
       render :new
     end
