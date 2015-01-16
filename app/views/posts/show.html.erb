@@ -1,0 +1,8 @@
+ <div>
+    <h3><%= @post.title %></h3>
+    <p><%= @post.body %></p>
+    <small><%= @post.created_at.strftime("created at: %a %F") %></small>
+  </div> 
+  <br> 
+
+  <%= link_to "View All Posts", posts_path %>
