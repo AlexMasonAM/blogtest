@@ -7,9 +7,17 @@ class PostsController < ApplicationController
   end
   
   def new
-  end
+    @post = Post.new 
+  end 
 
   def create
+    @post = Post.new(params.require(:post).permit(:title, :body,))
+    
+    if @post.save
+      #
+    else
+      render :new
+    end
   end
-  
+
 end
