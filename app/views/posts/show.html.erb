@@ -7,11 +7,26 @@
   <br> 
   <br> 
 
-
     <div>
-      <%= @post.comments.inspect %>
-    </div> 
+      <% @comments.each do |comment| %> 
+        <p>
+          <%= comment.body %>
+          <br>
+          <%= comment.date_published %>
+        </p>
+      <% end %>
+      
+      <h4> Create a comment:</h4>
+      <%= form_for(@new_comment) do |f| %>
+       
+        <%= f.text_area :body %><br>
+        <%= f.hidden_field :post_id, value: @post.id %>
 
+        <%= f.submit "Add Comment" %>
+
+      <% end %>
+
+    </div> 
 
   <br> 
   <br> 
