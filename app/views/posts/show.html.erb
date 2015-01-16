@@ -17,11 +17,10 @@
       <% end %>
       
       <h4> Create a comment:</h4>
-      <%= form_for(@new_comment) do |f| %>
+      <%= form_for(@new_comment, url: post_comments_path(@post)) do |f| %>
        
         <%= f.text_area :body %><br>
-        <%= f.hidden_field :post_id, value: @post.id %>
-
+    
         <%= f.submit "Add Comment" %>
 
       <% end %>
