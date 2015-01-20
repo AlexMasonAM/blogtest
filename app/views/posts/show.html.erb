@@ -15,16 +15,31 @@
           <%= comment.date_published %>
         </p>
       <% end %>
-      
-      <h4> Create a comment:</h4>
-      <%#= form_for(@new_comment, url: post_comments_path(@post)) do |f| %>
-      <%= form_for [@post, @new_comment] do |f| %>
-       
-        <%= f.text_area :body %><br>
-    
-        <%= f.submit "Add Comment" %>
 
-      <% end %>
+      <section>
+        <h3> Create a comment:</h3>
+        <%#= form_for(@new_comment, url: post_comments_path(@post)) do |f| %>
+        <%= form_for [@post, @new_comment] do |f| %>
+          <%= f.fields_for :commenter_attributes do |commenter_fields| %>
+            <div>
+              <%= commenter_fields.label :name %>
+              <%= commenter_fields.text_field :name %>
+            </div>
+            <div>
+              <%= commenter_fields.label :email %>
+              <%= commenter_fields.text_field :email %>
+            </div>      
+          <% end %>
+
+        <div>    
+          <%= f.label :body, "new comment:" %>
+          <%= f.text_area :body%>
+        </div>
+    
+          <%= f.submit "Add Comment" %>
+
+        <% end %>
+      </section>
 
     </div> 
 
@@ -32,3 +47,4 @@
   <br> 
 
   <%= link_to "View All Posts", posts_path %>
+

@@ -1,8 +1,10 @@
 class CommentsController < ApplicationController
   def create
+    render plain: params #shows all parameters
+
     post = Post.find(params[:post_id])
-    comment = post.comments.create(comment_params)
-    redirect_to post_path(comment.post)
+    comment = post.comments.create(params.require(:comment).permit(:body, commenter_attributes: [:name, :email]))
+    # redirect_to post_path(comment.post)
   end
 
   private
