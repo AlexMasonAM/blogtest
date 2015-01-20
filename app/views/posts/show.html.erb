@@ -12,12 +12,17 @@
         <p>
           <%= comment.body %>
           <br>
-          <%= comment.date_published %>
+          <h4>
+            Name: <%= comment.commenter.name if comment.commenter%> |  
+            Email: <%= comment.commenter.email if comment.commenter%>
+          </h4> 
+          <p><%= comment.date_published %></p>          
         </p>
+        -------------------------------------------
       <% end %>
 
       <section>
-        <h3> Create a comment:</h3>
+        <h2> Create a comment:</h2>
         <%#= form_for(@new_comment, url: post_comments_path(@post)) do |f| %>
         <%= form_for [@post, @new_comment] do |f| %>
           <%= f.fields_for :commenter_attributes do |commenter_fields| %>
